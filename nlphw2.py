@@ -29,8 +29,6 @@ def calculateBiGramNoSmoothing(inputString1, wordList, twoWordList):
 
 	print '------------------------------- Matrix ----------------------------------'
 	printArray(Matrix)
-	print '------------------------------- Divided by ------------------------------'
-	#printArray(dividedby)
 	print '------------------------------- ProbabilityMatrix ------------------------------'
 	printArray(ProbabilityMatrix)
 
@@ -57,8 +55,6 @@ def calculateBiGramWithSmoothing(inputString1, wordList, twoWordList, totalWords
 
 	print '------------------------------- Matrix ----------------------------------'
 	printArray(Matrix)
-	print '------------------------------- Divided by ------------------------------'
-	#printArray(dividedby)
 	print '------------------------------- ProbabilityMatrix ------------------------------'
 	printArray(ProbabilityMatrix)
 

@@ -11,7 +11,7 @@ def splitInLines(stringToProcess):
 	return stringToProcess.replace(" . ","\n")
 
 def removeSpecialCharacter(stringToProcess):
-	stringToProcess = stringToProcess.replace(" '","'").replace('"'," ").replace('-'," ").replace("`"," ")
+	stringToProcess = stringToProcess.replace("'"," ").replace('"'," ").replace('-'," ").replace("`"," ")
 	stringToProcess = stringToProcess.replace(","," ").replace("\\"," ").replace("/"," ").lower()
 	stringToProcess = re.sub(' +',' ',stringToProcess)
 	return stringToProcess
@@ -36,33 +36,36 @@ def getEachWordFrequency(stringToProcess):
 	for each in stringList:
 		lineWords = each.strip().split()
 		for eachWord in lineWords:
-			totalWords += 1
 			if eachWord in wordList:
 				wordList[eachWord] += 1
 			else:
+				totalWords += 1
 				wordList[eachWord] = 1
 
-	return wordList,totalWords
+	return wordList,totalWords,len(stringList)
 
 def getGivenPreviousWordNewWordFrequency(stringToProcess):
 	stringList = stringToProcess.split("\n")
 	wordList = {}
-	totalWords = 0
 	for each in stringList:
 		lineWords = each.strip().split()
 		for i in range(0,len(lineWords)):
 			if i == 0:
-				if "-"+lineWords[i] in wordList:
-					wordList["-"+lineWords[i]] += 1
+				key = "-"+lineWords[i]
+				if key in wordList:
+					wordList[key] += 1
 				else:
-					wordList["-"+lineWords[i]] = 1
+					wordList.update({key : 1})
 			else:
 				key = lineWords[i-1]+"-"+lineWords[i]
 				if key in wordList:
 					wordList[key] += 1
 				else:
 					wordList.update({key : 1})
+
+	#print wordList
 	return wordList
+
 
 def stringCleanUp(stringToProcess):
 	stringToProcess = removeNewLineChar(stringToProcess)
